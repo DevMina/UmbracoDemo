@@ -162,9 +162,9 @@ namespace UmbracoDemo
                             }
 
                             if (content.Published)
-                                _contentService.Save(content);
-                            else
                                 _contentService.SaveAndPublish(content);
+                            else
+                                _contentService.Save(content);
 
                             _logger.LogInformation("Processed content: {Id} ({Name})", content.Id, content.Name);
                         }
