@@ -1,0 +1,66 @@
+﻿<div style="height:410px;" ng-controller="CustomSchedulerOverlayController as vm">
+    <ng-form name="scheduleSelectorForm">
+        <div class="umb-editor-container" style="padding: 20px;">
+            <div class="umb-box">
+                <div class="umb-box-content">
+                    <div class="umb-property" style="margin-bottom: 20px;">
+                        <div class="control-group umb-control-group">
+                            <label class="control-label">
+                                Publish at
+                            </label>
+                            <div class="controls controls-row" style="display: flex; align-items: center; gap: 10px;">
+                                <umb-date-time-picker ng-model="vm.publishAt"
+                                                      options="vm.datePickerPublishConfig"
+                                                      on-setup="vm.datePickerSetup('publish', fpItem)"
+                                                      on-change="vm.datePickerChange(dateStr, 'publish')"
+                                                      on-open="vm.datePickerShow('publish')"
+                                                      on-close="vm.datePickerClose('publish')">
+                                </umb-date-time-picker>
+                                <button type="button"
+                                        ng-if="vm.publishAt"
+                                        ng-click="vm.clearPublishDate()"
+                                        class="btn btn-link"
+                                        style="padding: 5px;">
+                                    <i class="icon icon-delete"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Unpublish Date-->
+                    <div class="umb-property">
+                        <div class="control-group umb-control-group">
+                            <label class="control-label">
+                                Unpublish at
+                            </label>
+                            <div class="controls controls-row" style="display: flex; align-items: center; gap: 10px;">
+                                <umb-date-time-picker ng-model="vm.unpublishAt"
+                                                      options="vm.datePickerUnpublishConfig"
+                                                      on-setup="vm.datePickerSetup('unpublish', fpItem)"
+                                                      on-change="vm.datePickerChange(dateStr, 'unpublish')"
+                                                      on-open="vm.datePickerShow('unpublish')"
+                                                      on-close="vm.datePickerClose('unpublish')">
+                                </umb-date-time-picker>
+                                <button type="button"
+                                        ng-if="vm.unpublishAt"
+                                        ng-click="vm.clearUnpublishDate()"
+                                        class="btn btn-link"
+                                        style="padding: 5px;">
+                                    <i class="icon icon-delete"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<span style="color: #d42054; font-size: 12px; margin-top: 4px;"
+                          ng-show="!vm.unpublishAt && !vm.publishAt && submitting">
+                        Please select at least one date (publish date or unpublish date)
+                    </span>-->
+                    <span style="color: #d42054; font-size: 12px; margin-top: 4px;"
+                          ng-show="submitting && dateValidationMessage">
+                        {{ dateValidationMessage }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ng-form>
+</div>

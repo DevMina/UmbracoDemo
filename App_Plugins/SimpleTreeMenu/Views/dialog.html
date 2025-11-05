@@ -1,0 +1,42 @@
+<div class="doctyperender-dialog umb-panel" ng-controller="SimpleTreeMenu.DialogController as vm">
+
+    <form name="doctyperender" novalidate val-form-manager>
+
+        <umb-editor-view ng-if="!vm.loadingNode">
+            <umb-editor-container class="no-header">
+
+                <umb-box ng-repeat="tab in model.node.variants[0].tabs">
+                    <umb-box-header title="{{tab.label}}"></umb-box-header>
+                    <umb-box-content>
+                        <umb-property data-element="property-{{property.alias}}" ng-repeat="property in tab.properties" property="property">
+                            <umb-property-editor model="property"></umb-property-editor>
+                        </umb-property>
+                    </umb-box-content>
+                </umb-box>
+
+
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+
+                    <umb-button type="button"
+                                button-style="link"
+                                label-key="general_cancel"
+                                shortcut="esc"
+                                action="vm.close()">
+                    </umb-button>
+
+                    <umb-button type="button"
+                                button-style="success"
+                                label-key="buttons_save"
+                                action="vm.save()">
+                    </umb-button>
+
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+        </umb-editor-view>
+        <umb-load-indicator ng-if="vm.loadingNode">
+        </umb-load-indicator>
+    </form>
+</div>

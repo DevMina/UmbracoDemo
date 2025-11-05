@@ -1,0 +1,8 @@
+﻿<div class="umb-image-preview" ng-controller="umbImagePreviewController as controller">
+    <img class="umb-image-preview--image" ng-if="vm.clientSide" ng-init="previewUrl = controller.getClientSideUrl(vm.clientSideData)" ng-src="{{previewUrl}}" alt="{{vm.name}}" />
+    <a ng-if="!vm.clientSide" href="#" target="_blank" rel="noopener" download="download"
+       ng-init="targetUrl = (vm.source && vm.source.toLowerCase().includes('/uploads/') ? '/umbraco/backoffice/file/preview?url=' + vm.source : vm.source)"
+       ng-href="{{targetUrl}}">
+        <img class="umb-image-preview--image" ng-init="previewUrl = controller.getThumbnail(vm.source && vm.source.toLowerCase().includes('/uploads/') ? '/umbraco/backoffice/file/preview?url=' + vm.source : vm.source)" ng-src="{{previewUrl}}" alt="{{vm.name}}" />
+    </a>
+</div>

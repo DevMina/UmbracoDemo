@@ -1,0 +1,18 @@
+<div ng-controller="CustomDropDown">
+
+    <ng-form name="dropDownListForm">
+        
+        <select name="dropDownList"
+                class="umb-property-editor umb-dropdown"
+                ng-model="model.value"
+                ng-required="model.validation.mandatory">
+            <option selected ng-value="null">Select ....</option>
+            <option ng-repeat="x in model.config.items" value="{{x.id}}">{{x.title}}</option>
+        </select>
+
+        <div ng-messages="dropDownListForm.dropDownList.$error" show-validation-on-submit>
+            <p class="help-inline" ng-message="required">{{mandatoryMessage}}</p>
+        </div>
+
+    </ng-form>
+</div>

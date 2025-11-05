@@ -1,0 +1,14 @@
+{
+  "sections": [
+    {
+      "alias": "Reports",
+      "name": "Reports"
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/Reports/js/ActivityLogsReport.js",
+    "~/App_Plugins/Reports/js/EventsReport.js",
+    "~/App_Plugins/Reports/js/ContactUsReport.js"
+
+  ]
+}

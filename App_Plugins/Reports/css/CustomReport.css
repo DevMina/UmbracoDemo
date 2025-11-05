@@ -1,0 +1,193 @@
+﻿
+.umb-title-view {
+    background-color: white
+}
+
+.report-wrapper .umb-view-container {
+    top: 50px;
+    bottom: 0;
+}
+
+.report-wrapper .umb-table-head {
+    padding: 15px 0;
+}
+
+.filter-container .form-control select,
+.filter-container .form-control input {
+    margin-bottom: 0;
+    background: #fff;
+    height: 32px;
+}
+
+
+.filter-container {
+    display: flex;
+    align-items: baseline;
+    column-gap: 20px;
+    row-gap: 15px;
+    flex-wrap: wrap;
+}
+
+    .filter-container .form-control {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+    }
+
+
+.filter-container .form-control-sub {
+    gap: 10px;
+}
+
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.action-btns {
+    gap: 10px;
+    width: 100%;
+}
+
+    .action-btns .btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        height: 32px;
+    }
+
+    .action-btns .btn-reset {
+        padding: 6px 14px;
+    }
+
+        .action-btns .btn-reset img {
+            width: 18px;
+        }
+
+        .action-btns .btn-reset span {
+            line-height: 19px;
+        }
+
+    .action-btns .btn-info {
+        background-color: #f3ece8 !important;
+        color: black !important;
+    }
+
+    .action-btns .success {
+        background-color: #2bc37c !important;
+        color: white !important;
+    }
+
+
+    .action-btns .btn-info:focus, .action-btns .btn-info:hover {
+        background-color: #f3ece8 !important;
+    }
+
+.actions-btns .btn-info[disabled], .actions-btns .success[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.count-wrapper {
+    border: 1px solid rgb(187, 186, 191);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+    width: fit-content;
+    margin-left: auto;
+    text-align: right;
+}
+
+
+.validation-msg {
+    color: red;
+    margin-top: 5px;
+    display: block;
+    font-size: 12px;
+}
+
+/*.umb-empty-state.-center {
+    top: 70% !important;
+}*/
+
+.w-100 {
+    width: 100%;
+}
+
+.umb-table__name {
+    flex: 1 1 5%;
+}
+
+.umb-table-cell > * {
+    white-space: normal;
+}
+
+.umb-table-body .umb-table-cell:first-of-type, .umb-table-head .umb-table-cell:first-of-type {
+    display: none;
+}
+
+.umb-table__name > button {
+    cursor: default !important;
+    color: #515054 !important;
+}
+
+@media(max-width:991px) {
+    .filter-container .form-control, .filter-container .form-control select, .filter-container .form-control input, .action-btns {
+        width: 100%;
+        font-size: 12px;
+    }
+
+        .action-btns .btn {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+    .control-label, label.control-label {
+        font-size: 12px;
+        min-width: fit-content;
+    }
+
+    .umb-editor-container {
+        top: 50px;
+    }
+
+    .umb-table {
+        width: fit-content;
+    }
+
+    .umb-table-cell {
+        overflow: visible;
+        width: 115px;
+    }
+
+    .validation-msg {
+        font-size: 10px;
+        line-height: 13px;
+    }
+}
+
+.loader-img {
+    width: 20px;
+    margin: 0 5px;
+}
+
+
+.date-wrapper {
+    position: relative;
+}
+
+.clear-icon {
+    border: none;
+    background: transparent;
+    width: 25px;
+    position: absolute;
+    right: 0;
+}
+
+umb-date-time-picker, umb-date-time-picker input {
+    width: 100%;
+}

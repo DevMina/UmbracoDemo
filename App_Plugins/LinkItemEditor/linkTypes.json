@@ -1,0 +1,16 @@
+{
+    "linkTypes": [
+        {
+            "value": "External",
+            "label": "External Link"
+        },
+        {
+            "value": "DetailsPage",
+            "label": "Details Page"
+        },
+        {
+            "value": "InternalContent",
+            "label": "Internal Content"
+        }
+    ]
+} 

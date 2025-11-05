@@ -1,0 +1,10 @@
+{
+  "dashboards": [
+    {
+      "alias": "customDashboard",
+      "view": "/App_Plugins/CustomDashBoard/views/dashboard.html",
+      "sections": [ "content" ],
+      "weight": -10
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+﻿.umb-editor-sub-views .sub-view-Content .umb-empty-state.-center {
+    top: 100% !important;
+}
+/*div[data-element='button-preview']{
+    display: none;
+}*/
+
+umb-button[label-key='general_changePassword'] {
+    display: none
+}
+
+body.no-media-upload .upload-button,
+body.no-media-upload [data-element="dropzone"] {
+    display: none !important;
+}
+
+/*button[data-element="button-schedulePublish"] {
+    display: none !important;
+}*/

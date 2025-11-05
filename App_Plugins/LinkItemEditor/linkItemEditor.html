@@ -1,0 +1,179 @@
+﻿<div class="link-item-editor" ng-controller="LinkItemEditorController">
+    <div class="link-item-container">
+        <!-- Title Field -->
+        <div class="umb-property">
+            <div class="control-group umb-control-group">
+                <div class="umb-el-wrap">
+                    <label class="control-label">
+                        <localize key="linkItem_title">Title</localize>
+                        <strong ng-if="model.validation.mandatory" class="umb-control-required">*</strong>
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="linkitemtitle" class="umb-property-editor umb-textstring" ng-model="model.value.Title" ng-required="model.validation.mandatory" umb-property-validator ng-maxlength="model.config.maxLength" />
+                        <span class="validation-message"
+                              ng-show="propertyForm.linkitemtitle.$error.maxlength">
+                            Title cannot exceed {{model.config.maxLength}} characters.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Link Type Selection -->
+        <div class="umb-property">
+            <div class="control-group umb-control-group">
+                <div class="umb-el-wrap">
+                    <label class="control-label">
+                        <localize key="linkItem_linkType">Link Type</localize>
+                        <strong ng-if="model.validation.mandatory" class="umb-control-required">*</strong>
+                    </label>
+                    <div class="controls">
+                        <select class="umb-property-editor umb-dropdown" ng-model="model.value.linkType" ng-required="model.validation.mandatory">
+                            <option value=""></option>
+                            <option ng-repeat="type in linkTypes" value="{{type.value}}">{{type.label}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- External URL Field -->
+        <div class="umb-property" ng-show="model.value.linkType === 'External'">
+            <div class="control-group umb-control-group">
+                <div class="umb-el-wrap">
+                    <label class="control-label">
+                        <localize key="linkItem_externalUrl">External URL</localize>
+                    </label>
+                    <div class="controls">
+                        <input type="text" class="umb-property-editor umb-textstring" ng-model="model.value.ExternalUrl" placeholder="https://" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internal Content Picker -->
+        <div class="umb-property" ng-show="model.value.linkType === 'InternalContent'">
+            <div class="control-group umb-control-group">
+                <div class="umb-el-wrap">
+                    <label class="control-label">
+                        <localize key="linkItem_internalPage">Internal Page</localize>
+                        <!--<small class="required">*</small>-->
+                    </label>
+                    <div class="controls">
+                        <umb-property-editor model="internalPagePicker">
+                        </umb-property-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .link-item-editor {
+        padding: 10px;
+        background-color: #fff;
+    }
+
+    .link-item-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .link-item-editor .umb-property {
+        margin-bottom: 20px;
+    }
+
+    .link-item-editor .control-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #1b264f;
+    }
+
+    .link-item-editor .required {
+        color: #d42054;
+        margin-left: 4px;
+    }
+
+    .link-item-editor .controls {
+        position: relative;
+    }
+
+    .link-item-editor input[type="text"],
+    .link-item-editor input[type="url"] {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #e9e9eb;
+        border-radius: 3px;
+        transition: border-color 0.2s ease;
+        height: 36px;
+        font-size: 15px;
+        color: #1b264f;
+    }
+
+        .link-item-editor input[type="text"]:focus,
+        .link-item-editor input[type="url"]:focus {
+            border-color: #2152a3;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(33, 82, 163, 0.1);
+        }
+
+    .link-item-editor select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        background-size: 16px;
+        padding-right: 32px;
+        color: #1b264f;
+        font-size: 15px;
+        height: 36px;
+        cursor: pointer;
+    }
+
+        .link-item-editor select option {
+            padding: 8px;
+            font-size: 15px;
+            color: #1b264f;
+            background-color: #fff;
+        }
+
+            .link-item-editor select option:first-child {
+                color: #808080;
+            }
+
+        .link-item-editor select:focus {
+            border-color: #2152a3;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(33, 82, 163, 0.1);
+        }
+
+        .link-item-editor select:hover {
+            border-color: #2152a3;
+        }
+
+    .link-item-editor .umb-property-editor {
+        width: 100%;
+    }
+
+    /* Validation Styles */
+    .link-item-editor input.ng-invalid.ng-touched,
+    .link-item-editor select.ng-invalid.ng-touched {
+        border-color: #d42054;
+    }
+
+    .link-item-editor .validation-message {
+        color: #d42054;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .link-item-container {
+            max-width: 100%;
+            padding: 0 10px;
+        }
+    }
+</style>

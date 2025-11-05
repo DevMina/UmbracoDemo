@@ -1,0 +1,12 @@
+{
+  "javascript": [
+    "~/App_Plugins/Custom/js/common.js",
+    "~/App_Plugins/MainMenuNav/Js/dialog.controller.js",
+    "~/App_Plugins/Custom/js/image-cropper-custom.js",
+    "~/App_Plugins/Custom/js/umbMediaPicker3PropertyEditor.js"
+  ],
+  "css": [
+    "~/App_Plugins/Custom/css/Common.css"
+  ]
+ 
+}

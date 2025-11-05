@@ -1,0 +1,37 @@
+{
+  "propertyEditors": [
+    {
+      "alias": "CustomDropDown",
+      "name": "CustomDropDown",
+      "icon": "icon-list",
+      "group": "Custom",
+      "editor": {
+        "view": "~/App_Plugins/CustomFields/views/CustomDropdownFlexible.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Get Items Method",
+            "key": "getItemsMethod",
+            "description": "URL to get items",
+            "view": "textstring"
+          }
+        ]
+      }
+    },
+    {
+      "alias": "hiddenField",
+      "name": "Hidden Field",
+      "icon": "icon-list",
+      "group": "Custom",
+      "editor": {
+        "view": "~/App_Plugins/CustomFields/views/HiddenField.html"
+      }
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/CustomFields/js/CustomDropDown.js",
+    "~/App_Plugins/CustomFields/js/HiddenField.js",
+
+  ]
+}

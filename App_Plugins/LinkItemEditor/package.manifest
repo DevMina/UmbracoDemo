@@ -1,0 +1,28 @@
+{
+  "propertyEditors": [
+    {
+      "alias": "Custom.LinkItemEditor",
+      "name": "Link Item Editor",
+      "editor": {
+        "view": "~/App_Plugins/LinkItemEditor/linkItemEditor.html",
+        "valueType": "TEXT"
+      },
+      "defaultConfig": {
+        "maxLength": 15
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Maximum Length",
+            "description": "Set the maximum number of characters allowed for the title field.",
+            "key": "maxLength",
+            "view": "number"
+          }
+        ]
+      }
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/LinkItemEditor/linkItemEditor.controller.js"
+  ]
+}

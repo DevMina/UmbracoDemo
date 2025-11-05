@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/App_Plugins/Reports/css/CustomReport.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div ng-controller="ContactUsGridController">
+        <div class="umb-panel umb-editor-wrapper report-wrapper">
+            <div class="umb-editor-header">
+                <div class="flex items-center" style="height:100%;">
+                    <h1 class="umb-panel-header-name">Contact Us Report</h1>
+                </div>
+            </div>
+
+            <div class="umb-editor-container">
+                <!-- Filter Options-->
+                <div class="umb-pane">
+                    <div class="filter-container">
+
+                        <!-- searchText -->
+                        <div class="form-control">
+                            <label class="control-label">Search</label>
+                            <input type="text" class="umb-mb-0" ng-model="searchText" ng-keypress="filterTextKeypress($event)" maxlength="100" ng-change="searchTextChange()" />
+                        </div>
+
+                        <!-- Category -->
+                        <div class="form-control">
+                            <label class="control-label">Category</label>
+                            <select ng-model="selectedCategory">
+                                <option ng-repeat="c in categories" ng-value="c.categoryId">{{c.name}}</option>
+                            </select>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div class="form-control">
+                            <label class="control-label">Nationality</label>
+                            <select ng-model="selectedNationality">
+                                <option ng-repeat="c in nationalities" ng-value="c.id">{{c.name}}</option>
+                            </select>
+                        </div>
+
+                        <!-- Submission Date -->
+                        <div class="form-control">
+                            <label class="control-label">Submission Date:</label>
+                            <div class="form-control-sub flex date-wrapper">
+                                <label class="control-label">From</label>
+                                <umb-date-time-picker id="dateFrom" ng-model="dateFrom" options="datePickerSingle"
+                                                      class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty"
+                                                      aria-invalid="false" on-close="dateFromPickerChange(selectedDates, dateStr, instance)">
+                                </umb-date-time-picker>
+                                <button class="clear-icon" ng-click="clearDate('dateFrom')"> <img src="/style-library/images/clear-icon.png" /></button>
+                            </div>
+
+                            <div>
+                                <div class="flex date-wrapper">
+                                    <label class="control-label">To</label>
+                                    <umb-date-time-picker id="dateTo" ng-model="dateTo" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="dateToPickerChange(selectedDates, dateStr, instance)">
+                                    </umb-date-time-picker>
+                                    <button class="clear-icon" ng-click="clearDate('dateTo')"> <img src="/style-library/images/clear-icon.png" /></button>
+                                </div>
+                                <span class="validation-msg" ng-show="DateInvalid">End Date should be after or equal start date.</span>
+
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-btns flex">
+                            <button class="btn btn-success"
+                                    ng-click="doSearch(1)" ng-disabled="!canSearch || DateInvalid">
+                                Search
+                            </button>
+
+                            <button class="btn btn-info btn-reset" ng-click="clear()" ng-disabled="!canSearch">
+                                <img src="/style-library/images/reset-icon.png" />
+                                <span>Reset</span>
+                            </button>
+
+                            <button class="btn umb-button__button btn-outline umb-button-- umb-outline"
+                                    ng-click="export()" ng-disabled="!canExport || DateInvalid">
+                                <img src="/style-library/images/export-icon.png" />
+                                <span>Export</span>
+                                <span ng-show="showExportLoader"> <img class="loader-img" src="/style-library/images/loading.gif" /></span>
+                            </button>
+                        </div>
+                        <span class="validation-msg w-100" ng-show="ExportInvalid">{{errorMessage}}</span>
+
+                    </div>
+                </div>
+
+                <!-- Items Count-->
+                    <div class="count-wrapper">
+                        <label class="control-label">Count:</label>
+                        <label>{{ItemsCount}}</label>
+                    </div>
+
+
+                <div class="umb-pane umb-scrollable">
+
+                    <umb-load-indicator ng-show="!dataLoaded"></umb-load-indicator>
+
+                    <!-- Table Of content-->
+                    <umb-table items="searchResults.items"
+                               allow-select-all="false"
+                               item-properties="colums"
+                               on-click="clickItem(item)"
+                               on-sorting-direction="isSortDirection(col, direction)"
+                               on-sort="sort(field)">
+                    </umb-table>
+                </div>
+
+                <div class="umb-pane">
+                    <!-- Pagination-->
+                    <div class="flex justify-center">
+                        <umb-pagination ng-show="searchResults.totalPages"
+                                        page-number="pageNumber"
+                                        total-pages="searchResults.totalPages"
+                                        on-next="next"
+                                        on-prev="prev"
+                                        on-go-to-page="goToPage">
+                        </umb-pagination>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/App_Plugins/Reports/css/CustomReport.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div ng-controller="ActivityLogsGridController as vm">
+        <div class="umb-panel umb-editor-wrapper report-wrapper">
+            <div class="umb-editor-header">
+                <div class="flex items-center" style="height:100%;">
+                    <h1 class="umb-panel-header-name">Activity Logs Report</h1>
+                </div>
+            </div>
+
+            <div class="umb-editor-container">
+
+
+                <!-- Filter Options-->
+                <div class="umb-pane">
+                    <div class="filter-container">
+
+                        <!-- Content status (Type) -->
+                        <div class="form-control">
+                            <label class="control-label">Type</label>
+                            <select ng-model="vm.Type" ng-change="vm.changeType(vm.Type)">
+                                <option ng-value="1" selected="selected">تم نشرها</option>
+                                <option value="3">تم تعديلها</option>
+                                <option value="4">تم حذفها</option>
+                                <option value="2">لم يتم نشرها</option>
+                            </select>
+
+                        </div>
+
+                        <!-- Content Type -->
+                        <div class="form-control">
+                            <label class="control-label">Content Type</label>
+                            <select ng-model="contentType">
+                                <option value="0" selected="selected">الكل</option>
+                                <option ng-repeat="x in vm.contentTypes" value="{{x.alias}}">{{x.nameAR}}</option>
+                            </select>
+                        </div>
+
+                        <!-- Create Date -->
+                        <div class="form-control">
+                            <label class="control-label">Create Date:</label>
+                            <div class="form-control-sub flex  date-wrapper">
+                                <label class="control-label">From</label>
+                                <umb-date-time-picker id="createDateFrom" ng-model="createDateFrom" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="datePickerChange(selectedDates, dateStr, instance,'createDateFrom')">
+                                </umb-date-time-picker>
+                                <button class="clear-icon" ng-click="vm.clearDate('createDateFrom')"> <img src="/style-library/images/clear-icon.png" /></button>
+                            </div>
+
+                            <div>
+                                <div class="flex  date-wrapper">
+                                    <label class="control-label">To</label>
+                                    <umb-date-time-picker id="createDateTo" ng-model="createDateTo" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="datePickerChange(selectedDates, dateStr, instance,'createDateTo')">
+                                    </umb-date-time-picker>
+                                    <button class="clear-icon" ng-click="vm.clearDate('createDateTo')"> <img src="/style-library/images/clear-icon.png" /></button>
+                                </div>
+                                <span class="validation-msg" ng-show="vm.createDateInvalid">End Date should be after or equal start date.</span>
+
+                            </div>
+                        </div>
+
+                        <!-- Created By -->
+                        <div class="form-control">
+                            <label class="control-label">Created By</label>
+                            <select ng-model="createdBy">
+                                <option ng-value="0" selected="selected">الكل</option>
+                                <option ng-repeat="x in vm.users" value="{{x.id}}">{{x.name}}</option>
+                            </select>
+                        </div>
+
+                        <!-- Update Date-->
+                        <div class="form-control" ng-show="vm.Type != 4">
+                            <label class="control-label">Update Date:</label>
+                            <div class="form-control-sub flex  date-wrapper">
+                                <label class="control-label">From</label>
+                                <umb-date-time-picker id="updateDateFrom" ng-model="updateDateFrom" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="datePickerChange(selectedDates, dateStr, instance,'updateDateFrom')">
+                                </umb-date-time-picker>
+                                <button class="clear-icon" ng-click="vm.clearDate('updateDateFrom')"> <img src="/style-library/images/clear-icon.png" /></button>
+                            </div>
+
+                            <div>
+                                <div class="flex  date-wrapper">
+                                    <label class="control-label">To</label>
+                                    <umb-date-time-picker id="updateDateTo" ng-model="updateDateTo" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="datePickerChange(selectedDates, dateStr, instance,'updateDateTo')">
+                                    </umb-date-time-picker>
+                                    <button class="clear-icon" ng-click="vm.clearDate('updateDateTo')"> <img src="/style-library/images/clear-icon.png" /></button>
+                                </div>
+                                <span class="validation-msg" ng-show="vm.updateDateInvalid">End Date should be after or equal start date.</span>
+
+                            </div>
+                        </div>
+
+                        <!-- Modified By -->
+                        <div class="form-control" ng-show="vm.Type != 4">
+                            <label class="control-label">Modified By</label>
+                            <select ng-model="modifiedBy">
+                                <option ng-value="0" selected="selected">الكل</option>
+                                <option ng-repeat="x in vm.users" value="{{x.id}}">{{x.name}}</option>
+                            </select>
+                        </div>
+
+                        <!-- Deleted Date -->
+                        <div class="form-control" ng-show="vm.Type == 4">
+                            <label class="control-label">Delete Date</label>
+                            <div class="form-control-sub flex  date-wrapper">
+                                <label class="control-label">From</label>
+                                <umb-date-time-picker id="deleteDateFrom" ng-model="deleteDateFrom" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="datePickerChange(selectedDates, dateStr, instance,'deleteDateFrom')">
+                                </umb-date-time-picker>
+                                <button class="clear-icon" ng-click="vm.clearDate('deleteDateFrom')"> <img src="/style-library/images/clear-icon.png" /></button>
+                            </div>
+
+                            <div>
+                                <div class="flex  date-wrapper">
+                                    <label class="control-label">To</label>
+                                    <umb-date-time-picker id="deleteDateTo" ng-model="deleteDateTo" options="datePickerSingle" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" aria-invalid="false" on-close="datePickerChange(selectedDates, dateStr, instance,'deleteDateTo')">
+                                    </umb-date-time-picker>
+                                    <button class="clear-icon" ng-click="vm.clearDate('deleteDateTo')"> <img src="/style-library/images/clear-icon.png" /></button>
+                                </div>
+                                <span class="validation-msg" ng-show="vm.deleteDateInvalid">End Date should be after or equal start date.</span>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Deleted By -->
+                        <div class="form-control" ng-show="vm.Type == 4">
+                            <label class="control-label">Deleted By</label>
+                            <select ng-model="deletedBy">
+                                <option ng-value="0" selected="selected">الكل</option>
+                                <option ng-repeat="x in vm.users" value="{{x.id}}">{{x.name}}</option>
+                            </select>
+                        </div>
+
+
+
+                        <!-- Actions -->
+                        <div class="action-btns flex">
+                            <button class="btn btn-success"
+                                    ng-click="vm.Search(1)"
+                                    ng-disabled="!vm.canSearch || vm.createDateInvalid || vm.updateDateInvalid || vm.deleteDateInvalid">
+                                Search
+                            </button>
+
+                            <button class="btn btn-info btn-reset"
+                                    ng-click="vm.clear()"
+                                    ng-disabled="!vm.canSearch">
+                                <img src="/style-library/images/reset-icon.png" />
+                                <span>Reset</span>
+                            </button>
+
+                            <button class="btn umb-button__button btn-outline umb-button-- umb-outline"
+                                    ng-click="vm.export()"
+                                    ng-disabled="ItemsCount == null || ItemsCount == 0 || vm.createDateInvalid || vm.updateDateInvalid || vm.deleteDateInvalid">
+                                <img src="/style-library/images/export-icon.png" />
+                                <span>Export</span>
+                                <span ng-show="showExportLoader"> <img class="loader-img" src="/style-library/images/loading.gif" /></span>
+                            </button>
+
+                        </div>
+
+                        <span class="validation-msg w-100" ng-show="ExportInvalid">Error occurred during exporting data</span>
+
+                    </div>
+                </div>
+
+                <!-- Items Count-->
+                    <div class="count-wrapper">
+                        <label class="control-label">Count:</label>
+                        <label>{{ItemsCount}}</label>
+                    </div>
+
+                <div class="umb-pane umb-scrollable">
+                    <umb-load-indicator ng-show="!vm.dataLoaded"></umb-load-indicator>
+                    <umb-empty-state ng-hide="vm.searchResults.items">
+                        <localize key="content_listViewNoItems"></localize>
+                    </umb-empty-state>
+
+                    <umb-activity-logs-table items="vm.searchResults.items"
+                                             allow-select-all="false"
+                                             item-properties="vm.colums"
+                                             on-click="vm.clickItem(item)"
+                                             on-sorting-direction="vm.isSortDirection(col, direction)"
+                                             on-sort="vm.sort(field)">
+                    </umb-activity-logs-table>
+
+                </div>
+
+                <div class="umb-pane">
+                    <!-- Pagination-->
+                    <div class="flex justify-center">
+                        <umb-pagination ng-show="vm.searchResults.totalPages"
+                                        page-number="vm.pageNumber"
+                                        total-pages="vm.searchResults.totalPages"
+                                        on-next="vm.next"
+                                        on-prev="vm.prev"
+                                        on-go-to-page="vm.goToPage">
+                        </umb-pagination>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

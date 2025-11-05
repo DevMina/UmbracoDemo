@@ -1,0 +1,102 @@
+[
+  {
+    "alias": "newsItem",
+    "nameAR": "الأخبار",
+    "name": "News"
+  },
+  {
+    "alias": "event",
+    "nameAR": "الفعاليات",
+    "name": "Event"
+  },
+  {
+    "alias": "announcement",
+    "nameAR": "الأخبار الأساسية",
+    "name": "Announcements"
+  },
+  {
+    "alias": "usefulLink",
+    "nameAR": "روابط مفيدة",
+    "name": "Useful Link"
+  },
+  {
+    "alias": "socialMediaLink",
+    "nameAR": "مواقع التواصل الإجتماعي",
+    "name": "Social Media Link"
+  },
+  {
+    "alias": "fAQ",
+    "nameAR": "الاسئلة الشائعة",
+    "name": "FAQ"
+  },
+  {
+    "alias": "eventCategory",
+    "nameAR": "فئات الفعاليات",
+    "name": "Event Category"
+  },
+  {
+    "alias": "eventSubCategory",
+    "nameAR": "فئة الفعالية الفرعية",
+    "name": "Event Sub Category"
+  },
+  {
+    "alias": "photoAlbumCategory",
+    "nameAR": "فئات البومات الصور",
+    "name": "Photo Album Category"
+  },
+  {
+    "alias": "videoAlbumCategory",
+    "nameAR": "فئات البومات الفيديوهات",
+    "name": "Video Album Category"
+  },
+  {
+    "alias": "photoAlbum",
+    "nameAR": "البومات معرض الصور",
+    "name": "Photo Album"
+  },
+  {
+    "alias": "photoAlbumItem",
+    "nameAR": "الصور",
+    "name": "Photo Album Item"
+  },
+  {
+    "alias": "videoAlbum",
+    "nameAR": "البومات الفيديو",
+    "name": "Video Album"
+  },
+  {
+    "alias": "videoAlbumItem",
+    "nameAR": "الفيديوهات",
+    "name": "Video Album Item"
+  },
+  {
+    "alias": "fAQCategory",
+    "nameAR": "فئات الاسئلة الشائعة",
+    "name": "FAQ Category"
+  },
+  {
+    "alias": "contactUsCategory",
+    "nameAR": "فئات اتصل بنا",
+    "name": "Contact Us Category"
+  },
+  {
+    "alias": "contentTemplate1",
+    "nameAR": "قالب محتوى بسيط",
+    "name": "Simple Template"
+  },
+  {
+    "alias": "simpleTemplate",
+    "nameAR": "قالب محتوى مع فيديوهات و صور",
+    "name": "Simple Template With Related Media"
+  },
+  {
+    "alias": "template3",
+    "nameAR": "قالب محتوى نموذج من نحن",
+    "name": "Who We Are Template"
+  },
+  {
+    "alias": "sitemaphtml",
+    "nameAR": "خريطة الموقع",
+    "name": "Site Map"
+  }
+]
